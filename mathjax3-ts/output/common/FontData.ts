@@ -335,7 +335,6 @@ export class FontData {
      */
     protected static defaultVariantClasses: StringMap = {};
 
-
     /**
      * @param {CharMap} font   The font to check
      * @param {number} n       The character to get options for

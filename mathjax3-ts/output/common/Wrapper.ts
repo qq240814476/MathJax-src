@@ -286,7 +286,7 @@ AbstractWrapper<MmlNode, CommonWrapper<J, W, C>> {
      * @param {BBox} bbox           The bounding box to modify (either this.bbox, or an empty one)
      * @param {boolean} recompute   True if we are recomputing due to changes in percentage width children
      */
-    protected computeBBox(bbox: BBox, recompute: boolean = false) {
+    public computeBBox(bbox: BBox, recompute: boolean = false) {
         bbox.empty();
         for (const child of this.childNodes) {
             bbox.append(child.getBBox());

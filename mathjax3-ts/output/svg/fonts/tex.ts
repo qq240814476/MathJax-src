@@ -68,7 +68,7 @@ export class TeXFont extends FontData {
         ['-smallop', 'normal'],
         ['-largeop', 'normal'],
         ['-size3', 'normal'],
-        ['-size4', 'normal'],
+        ['-stretchy', 'normal'],
         ['-tex-caligraphic', 'italic'],
         ['-tex-bold-caligraphic', 'bold-italic'],
         ['-tex-oldstyle', 'normal'],
@@ -85,7 +85,7 @@ export class TeXFont extends FontData {
     /**
      *  The default variants for the standard stretchy sizes
      */
-    protected static defaultSizeVariants = ['normal', '-smallop', '-largeop', '-size3', '-size4'];
+    protected static defaultSizeVariants = ['normal', '-smallop', '-largeop', '-size3', '-stretchy'];
 
     /**
      *  The character data by variant
@@ -108,7 +108,7 @@ export class TeXFont extends FontData {
         '-smallop': smallop,
         '-largeop': largeop,
         '-size3': texSize3,
-        '-size4': texSize4,
+        '-stretchy': texSize4,
         '-tex-caligraphic': texCaligraphic,
         '-tex-bold-caligraphic': texCaligraphicBold,
         '-tex-mathit': texMathit,

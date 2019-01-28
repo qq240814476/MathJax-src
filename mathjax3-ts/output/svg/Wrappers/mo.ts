@@ -59,15 +59,15 @@ export class SVGmo<N, T, D> extends CommonMoMixin<SVGConstructor<N, T, D>>(SVGWr
         if (stretchy && this.size < 0) {
             this.stretchSVG(svg, symmetric);
         } else {
+            this.addChildren(svg);
             if (symmetric || attributes.get('largeop')) {
                 const bbox = BBox.empty();
-                super.computeBBox(bbox);
+                super.computeBBox(bbox, false, true);
                 const u = this.fixed((bbox.d - bbox.h) / 2 + this.font.params.axis_height);
                 if (u !== '0') {
-                    this.adaptor.setAttribute(svg, 'transform', 'translate(0 '+ u + ')');
+                    this.adaptor.setAttribute(this.adaptor.firstChild(svg), 'transform', 'translate(0 '+ u + ')');
                 }
             }
-            this.addChildren(svg);
         }
     }
 
@@ -129,7 +129,7 @@ export class SVGmo<N, T, D> extends CommonMoMixin<SVGConstructor<N, T, D>>(SVGWr
      * @return {CharData}        The full CharData object, with CharOptions guaranteed to be defined
      */
     protected getChar(n: number) {
-        const char = this.font.getChar('-size4', n) || [0, 0, 0, null];
+        const char = this.font.getChar('-stretchy', n) || [0, 0, 0, null];
         return [char[0], char[1], char[2], char[3] || {}] as [number, number, number, CharOptions];
     }
 
@@ -141,7 +141,7 @@ export class SVGmo<N, T, D> extends CommonMoMixin<SVGConstructor<N, T, D>>(SVGWr
      * @return {N}         The SVG path for the glyph
      */
     protected addGlyph(n: number, x: number, y: number, parent: N = null) {
-        return this.placeChar(n, x, y, parent || this.element, '-size4');
+        return this.placeChar(n, x, y, parent || this.element, '-stretchy');
     }
 
     /***********************************************************/

@@ -92,6 +92,11 @@ export interface CommonMo extends AnyWrapper {
      * @return {number[]}        The height and depth for the vertically stretched delimiter
      */
     getBaseline(WHD: number[], HD: number, C: DelimiterData): number[];
+
+    /**
+     * @override
+     */
+    computeBBox(bbox: BBox, recompute?: boolean, nocenter?: boolean): void;
 }
 
 /**
@@ -135,18 +140,18 @@ export function CommonMoMixin<T extends WrapperConstructor>(Base: T): MoConstruc
         /**
          * @override
          */
-        public computeBBox(bbox: BBox, recompute: boolean = false) {
+        public computeBBox(bbox: BBox, recompute: boolean = false, nocenter: boolean = false) {
             const stretchy = (this.stretch.dir !== DIRECTION.None);
             if (stretchy && this.size === null) {
                 this.getStretchedVariant([0]);
             }
             if (stretchy && this.size < 0) return;
-            super.computeBBox(bbox);
+            super.computeBBox(bbox, recompute);
             this.copySkewIC(bbox);
             if (this.noIC) {
                 bbox.w -= bbox.ic;
             }
-            if (this.node.attributes.get('symmetric') &&
+            if (!nocenter && this.node.attributes.get('symmetric') &&
                 this.stretch.dir !== DIRECTION.Horizontal) {
                 const d = ((bbox.h + bbox.d) / 2 + this.font.params.axis_height) - bbox.h;
                 bbox.h += d;

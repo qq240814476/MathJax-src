@@ -40,7 +40,7 @@ export class CommonTeXFont extends FontData {
         ['-smallop', 'normal'],
         ['-largeop', 'normal'],
         ['-size3', 'normal'],
-        ['-size4', 'normal'],
+        ['-stretchy', 'normal'],
         ['-tex-caligraphic', 'italic'],
         ['-tex-bold-caligraphic', 'bold-italic'],
         ['-tex-oldstyle', 'normal'],
@@ -67,7 +67,7 @@ export class CommonTeXFont extends FontData {
     /**
      *  The default variants for the standard stretchy sizes
      */
-    protected static defaultSizeVariants = ['normal', '-smallop', '-largeop', '-size3', '-size4'];
+    protected static defaultSizeVariants = ['normal', '-smallop', '-largeop', '-size3', '-stretchy'];
 
     /**
      * @return {StyleList}  The (computed) styles for this font
@@ -97,7 +97,7 @@ export class CommonTeXFont extends FontData {
      * @return {CharData}   The data for that character to be used for stretchy delimiters
      */
     protected getDelimiterData(n: number) {
-        return this.getChar('-smallop', n) || this.getChar('-size4', n);
+        return this.getChar('-smallop', n) || this.getChar('-stretchy', n);
     }
 
 }
