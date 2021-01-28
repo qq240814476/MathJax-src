@@ -77,6 +77,7 @@ export const MO = {
 };
 
 /**
+ *  全量 mo 范围 malin
  *  The default TeX classes for the various unicode blocks, and their names
  */
 export const RANGES: RangeDef[] = [
