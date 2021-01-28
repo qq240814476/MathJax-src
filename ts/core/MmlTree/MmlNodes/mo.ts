@@ -349,7 +349,7 @@ export class MmlMo extends AbstractMmlTokenNode {
     }
 
     /**
-     * mathjax mo 规则 malin
+     * mathjax mo 判断规则 malin
      * @param {string} mo  The character to look up in the range table
      * @return {RangeDef}  The unicode range in which the character falls, or null
      */
